@@ -1,0 +1,46 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-8">
+<head>
+<script language="javascript" type="text/javascript">
+<!--
+/****************************************************
+     Author: Eric King
+     Url: http://redrival.com/eak/index.shtml
+     This script is free to use as long as this info is left in
+     Featured on Dynamic Drive script library (http://www.dynamicdrive.com)
+****************************************************/
+var win=null;
+function NewWindow(mypage,myname,w,h,scroll,pos){
+if(pos=="random"){LeftPosition=(screen.width)?Math.floor(Math.random()*(screen.width-w)):100;TopPosition=(screen.height)?Math.floor(Math.random()*((screen.height-h)-75)):100;}
+if(pos=="center"){LeftPosition=(screen.width)?(screen.width-w)/2:100;TopPosition=(screen.height)?(screen.height-h)/2:100;}
+else if((pos!="center" && pos!="random") || pos==null){LeftPosition=0;TopPosition=20}
+settings='width='+w+',height='+h+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',location=no,directories=no,status=no,menubar=no,toolbar=no,resizable=yes';
+win=window.open(mypage,myname,settings);}
+// -->
+</script>
+</head>
+<body Bgcolor="#004080" style="margin-top: 5px;">
+<center>
+<a href="../talmid.htm" target="_top"><img src="../images/abt_begi.gif" alt="Home" width="135" height="29" border="0"></a><br>
+<a href="../tblcont/mapatatar.htm" target="_top"><img src="../images/abt_kolma.gif" alt=" list of places" width="135" height="29" border="0"></a><br>
+<a href="VIST_FRM.HTM" target="_top"><img src="../IMAGES/from_merk.gif" width="135" height="29" border="0" alt="מרכז מבקרים"></a>
+<br><br>
+<table bgcolor="#FCFEE4">
+<tr align="center"><td>
+<center><b><font size="+1" color="#804040"><a href="Map_hekP.htm" target="main">:הפמה תא רכה</a></font></b><br>
+<font size="-1" color="#804040" style="font-family: sans-serif;"><b>
+הפמב לולסמה םש לע הציחל<br>
+!וב םישוע המ םכל הלגת -<br></center>
+</td></tr>
+	<tr><td><img src="maps/bluemap.gif" width="173" height="39" border="0"><br></td></tr>
+	<tr><td><img src="maps/greenmap.gif" width="173" height="39" border=0><br></td></tr>
+	<tr><td><img src="maps/redmap.gif" width="173" height="39" border=0><br></td></tr>
+	<tr><td><img src="maps/orangemap.gif" width="173" height="39" border=0><br></td></tr>
+	<tr><td><img src="maps/pinkmap.gif" width="173" height="39" border=0><br></td></tr>
+	<tr><td><img src="maps/purplemap.gif" width="173" height="39" border=0><br></td></tr>
+	<tr><td align="center">
+	<a href="vmaphlp.htm" onclick="NewWindow(this.href,'name','510','200','no');return false">?הפמה םע םידבוע ךיא</a><br></td></tr>
+</table>
+
+</center></body>
+</html>

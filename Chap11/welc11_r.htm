@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<script language="Javascript">
+
+<!--hide
+
+<!-- This Function is for IE3 -->
+
+function explor(){
+
+if (!document.images){
+location.href="welc11_r.htm"
+}
+
+}
+
+<!-- Precaching -->
+
+if ((navigator.userAgent.indexOf("Mozilla/3.0",0)>=0)||(navigator.userAgent.indexOf("Mozilla/4.0",0)>=0))
+  { 
+ 	chap = new Image;
+	chap.src="pic11/chap_y.gif";
+ 	 }
+
+<!-- Image Flip -->
+
+function on(a){
+if ((navigator.userAgent.indexOf("Mozilla/3.0",0)>=0)||(navigator.userAgent.indexOf("Mozilla/4.0",0)>=0))
+  { 
+
+    document.images[a].src = "pic11/" + a + "_y.gif" ;
+   }
+}
+function off(a){ 
+    document.images[a].src = "pic11/" + a + ".gif" ;
+   }
+
+//-->
+
+</script>
+<title>?כיצד בונים דגם או מוצר</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-8">
+</HEAD>
+<body  bgcolor="#004080" onLoad=explor()>
+<div align="right"><a href="../talmid.htm" target="_top"><img src="../images/abt_begi.gif" alt="Home" width="135" height="29" border="0"></a><br>
+<a href="../tblcont/mapatatar.htm" target="_top"><img src="../images/abt_kolma.gif" alt=" list of places" width="135" height="29" border="0"></a><br>
+<a href="../main/main.htm" target="_top"><img src="../IMAGES/from_mapa.gif" alt="Map" width="135" height="29" border="0"></a><br><br>
+
+<table>
+<tr align="center"><td nowrap><img src="../images/empty.gif" width="1" height="1" vspace="20">
+<br>
+<a href="sign11.htm" onMouseOver="on('chap')" onMouseOut="off('chap')"  target="main"><img name="chap" src="pic11/chap.gif" width="140" height="191" border="0" alt=""></a>
+</td></tr>
+</table>
+</div>
+
+</body>
+
+
+</html>

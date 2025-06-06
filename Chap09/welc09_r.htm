@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<script language="Javascript">
+
+<!--hide
+
+<!-- This Function is for IE3 -->
+
+function explor(){
+
+if (!document.images){
+location.href="welc09_r.htm"
+}
+
+}
+
+<!-- Precaching -->
+
+if ((navigator.userAgent.indexOf("Mozilla/3.0",0)>=0)||(navigator.userAgent.indexOf("Mozilla/4.0",0)>=0))
+  { 
+ 	chap = new Image;
+	chap.src="pic09/chap_y.gif";
+ 	 }
+
+<!-- Image Flip -->
+
+function on(a){
+if ((navigator.userAgent.indexOf("Mozilla/3.0",0)>=0)||(navigator.userAgent.indexOf("Mozilla/4.0",0)>=0))
+  { 
+
+    document.images[a].src = "pic09/" + a + "_y.gif" ;
+   }
+}
+function off(a){ 
+    document.images[a].src = "pic09/" + a + ".gif" ;
+   }
+
+//-->
+
+</script>
+<title>?כיצד אוספים ומארגנים נתונים</title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-8">
+</HEAD>
+<body  bgcolor="#004080" onLoad=explor()>
+<div align="right"><a href="../talmid.htm" target="_top"><img src="../images/abt_begi.gif" alt="Home" width="135" height="29" border="0"></a><br>
+<a href="../tblcont/mapatatar.htm" target="_top"><img src="../images/abt_kolma.gif" alt=" list of places" width="135" height="29" border="0"></a><br>
+<a href="../main/main.htm" target="_top"><img src="../IMAGES/from_mapa.gif" alt="Map" width="135" height="29" border="0"></a><br><br>
+
+<table>
+<tr align="center"><td nowrap><img src="../images/empty.gif" width="1" height="1" vspace="20">
+<br>
+<a href="sign09.htm" onMouseOver="on('chap')" onMouseOut="off('chap')"  target="main"><img name="chap" src="pic09/chap.gif" width=137 height=186 border=0 alt=""></a>
+</td></tr>
+</table>
+</div>
+
+</body>
+
+
+</html>

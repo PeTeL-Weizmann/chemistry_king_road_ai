@@ -1,0 +1,20 @@
+BODY {
+	background: white url(../bg/bg_madr.gif);
+	background-repeat: repeat-y;
+	margin-right : 35px;
+	background-color : #EDF8FD;
+}
+
+A:Hover {
+	text-decoration: underline;
+	color: #C80064;
+}
+
+A:link {
+	color: #762b8c;
+}
+
+A:vlink {
+	color: #762b8c;
+}
+

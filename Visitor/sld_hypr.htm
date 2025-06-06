@@ -1,0 +1,32 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-8">
+<head>
+<script language="JavaScript">
+number = 1;
+function change(i)
+{  var OldNumber = number;
+   number += i;
+   if (number>21 || number<1)
+      number = 1;
+   if (OldNumber != number )
+   {  document.pic.src = "slides/sld" + number + ".gif";
+      if (number==1)
+        document.back.src = "slides/sld0.gif";
+      if (OldNumber==1)
+        document.back.src = "slides/sldpre.gif";
+   }
+}
+</script></head>
+<body background="../bg/bg_dug.gif" text="#NAVY" link="#B700B7" vlink="#8D7DC4">
+<DIV ALIGN=RIGHT>
+<table align="center" width="90%"><tr valign=top align=center>
+  <td align="center" nowrap><A HREF="javascript:change(-1)"><img name="back"  src="slides/sld0.gif" alt="sld0" width="57" height="57" border="0"></A> <A HREF="javascript:change(1)"><img src="slides/sldnext.gif" alt="next" width="57" height="57" border="0"></A>
+  <td nowrap><B><font color=B30000 size=+2>תגצמ :ל אמגוד</font></b>
+</table>
+
+<center><img name="pic"  src="slides/sld1.gif" alt="sld1" width="390" height="295" border="0"></center>
+<DIV align="right">
+
+<hr>
+<img src="../images/projlogo.gif" alt="logo" width="460" height="37" hspace="5"><br>
+</div></body></html>

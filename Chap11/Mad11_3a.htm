@@ -1,0 +1,355 @@
+<html>
+<head>
+	<title>"ארגז כלים"  לעיבוד נתונים בטבלה</title>
+	<style type="text/css">
+DIV.clFold{position:absolute; width:0; clip:rect(0,600,600,0)}
+DIV.clFoldSub{position:absolute; left:0; width:0; visibility:hidden}
+DIV.clFoldSub2{position:absolute; left:0; width:-10; visibility:hidden}
+#divFoldCont{position:relative; left:-100; top:0; height:250; width:170; visibility:hidden}
+A.clFoldLinks{font-family:Arial, Verdana, Helvetica, Helv; font-size:15px; text-decoration:none; font-weight:bold; color:black}
+A.clSubLinks{font-family:Arial, Verdana, Helvetica, Helv; font-size:13px; font-weight:bold; text-decoration:none; color:black}
+A.clSubLinks2{font-family:Arial, Verdana, Helvetica, Helv; font-size:12px; text-decoration:none; color:black}
+</style>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-8">
+<body leftmargin=0 topmargin=0 bgcolor="#E7F7FF">
+<table width="98%" border="0" align="center"><tr align="center"><td  nowrap><font  size="-1" color="#004080">הלבטב םינותנה דוביע</font>
+<br>
+<b><font color=C80064 size=+1>הלבטב םינותנ דוביעל  "םילכ זגרא"</font></b><br>
+<img src="../images/line_sh.gif" alt="Line"  width="300" height="17"></td></tr>
+<tr align="center" valign="bottom"><td align="center" nowrap><b><font color=C80064 size=+1>הלאשה גוס יפל הריחב</font></b></td></tr>
+</table>
+<div align="right"><blockquote>
+<table border="0" align="right"><tr align="right"><td>
+ רישע רחבמ ואצמת םכינפלש "םילכה זגרא"ב<br>
+ דוביעב םכתא תרשל ולכויש ,"םילכ" לש<br>
+ םישדח םילכה םא םג .םיימלוגה םינותנה<br>
+שמתשהל ליחתהלו "םימל ץופקל" יאדכ ,םכל<br>
+תא םכסל  םכל ורזעי ולא םילכ .םהב<br>
+.םתרזעב תולגל ןתינ המ ןיבהלו םינותנה<br><br>
+<b><FONT COLOR=#5000DF> ורחבו וצחל - םתרקחש הלאשה גוס יפ לע<br>
+:םכלש םינתשמ םימיאתמה םילכב </font></b><br>
+<img src="../IMAGES/tools_1.gif" width="156" height="113" border="0" alt="">
+<br><br>
+<b>?רוחבל ילכ הזיאב</b><br>
+<a href="mad11_6.htm">םייטסיטטס םידדמ</a> | <a href="mad11_5.htm">םייניב ימוכיס</a> | <a href="mad11_4.htm">הלבט ןוימ</a><br>
+</blockquote></div>
+</td></tr></table>
+
+<script type="text/javascript" language="JavaScript">
+/********************************************************************************
+Copyright (C) 1999 Thomas Brattli
+This script is made by and copyrighted to Thomas Brattli at www.bratta.com
+Visit for more great scripts. This may be used freely as long as this msg is intact!
+I will also appriciate any links you could give me.
+********************************************************************************/
+//Default browsercheck, added to all scripts!
+function checkBrowser(){
+	this.ver=navigator.appVersion
+	this.dom=document.getElementById?1:0
+	this.ie5=(this.ver.indexOf("MSIE 5")>-1 && this.dom)?1:0;
+	this.ie4=(document.all && !this.dom)?1:0;
+	this.ns5=(this.dom && parseInt(this.ver) >= 5) ?1:0;
+	this.ns4=(document.layers && !this.dom)?1:0;
+	this.bw=(this.ie5 || this.ie4 || this.ns4 || this.ns5)
+	return this
+}
+bw=new checkBrowser()
+/************************************************************************************
+This is the new foldoutmenu, with more levels!
+This is in some ways a rather advanced menu so please read every
+note in this script and in the comments in the page to understand how
+it works.
+************************************************************************************/
+
+//Do you want images (if not set to 0 and remove the images from the body)?
+foldImg=0
+
+//Here are the images for the top links.
+foldinImg=new Image(); foldinImg.src="images/foldarrowin.gif" //The image for the "in" state.
+foldoutImg=new Image(); foldoutImg.src="images/foldarrowout.gif" //The image for the "out" state.
+//Here are the images for the sub links.
+foldsubinImg=new Image(); foldsubinImg.src="images/foldsubarrowin.gif" //The image for the "in" state.
+foldsuboutImg=new Image(); foldsuboutImg.src="images/foldsubarrowout.gif" //The image for the "out" state.
+//If you change the images above please remember to change the images in the actual page as well.
+
+mainmenus=4 //How many main menus do you have?
+
+//How many submenus do you have beneath each main level.
+submenus=new Array(4,4,4,3) 
+//In this example I have 3 submenus in the first top menu,
+//3, in the second, 2 submenus in the third top menu and 3 in the forth.
+//It's really important that these numbers are correct.
+
+pxbetweenmain=0 //How much space should there be between the main menus
+pxbetweensub=0 //How much space should there be between the sub menus
+
+mainstayfolded=false //Should the main menus stay folded?
+substayfolded=false //Should the sub menus stay folded?  Play with these 2 variables.
+
+
+/************************************************************************************
+Making cross-browser objects
+************************************************************************************/
+function makeMenu(obj,nest){
+	nest=(!nest) ? '':'document.'+nest+'.'										
+   	this.css=bw.dom? document.getElementById(obj).style:bw.ie4?document.all[obj].style:bw.ns4?eval(nest+"document.layers." +obj):0;		
+	this.el=bw.dom?document.getElementById(obj):bw.ie4?document.all[obj]:bw.ns4?eval(nest+'document.'+obj):0;	
+	this.ref=bw.dom || bw.ie4? document:bw.ns4?eval(nest+"document.layers." +obj+".document"):0;		
+	this.x=(bw.ns4 || bw.ns5)? this.css.left:this.css.pixelLeft;
+	this.y=(bw.ns4 || bw.ns5)? this.css.top:this.css.pixelTop;		
+	this.height=bw.ns4?this.ref.height:this.el.offsetHeight;		
+	this.hideIt=b_hideIt; this.showIt=b_showIt; this.moveIt=b_moveIt	
+	this.status=0;	
+	return this
+}
+function b_showIt(){this.css.visibility="visible"; this.status=1}
+function b_hideIt(){this.css.visibility="hidden"; this.status=0}
+function b_moveIt(x,y){this.x=x; this.y=y; this.css.left=this.x; this.css.top=this.y}	
+/************************************************************************************
+Initiating the page and making the menu
+************************************************************************************/
+function foldInit(){
+	//Creating the foldoutmenu
+	oFold=new Array(); y=0
+	for(i=0;i<mainmenus;i++){
+		oFold[i]=new makeMenu('divFold'+i,'divFoldCont')
+		oFold[i].moveIt(0,y); oFold[i].size=oFold[i].height
+		y+=oFold[i].height+pxbetweenmain
+		oFold[i].sub=new Array()
+		oFold[i].subs=top_subs;
+		suby=oFold[i].height+pxbetweensub
+		for(j=0;j<submenus[i];j++){
+			oFold[i].sub[j]=new makeMenu('divFoldSub'+i+'_'+j,'divFoldCont.document.divFold'+i)
+			oFold[i].sub[j].sub=new makeMenu('divFoldSub'+i+'_'+j+'_0','divFoldCont.document.divFold'+i+'.document.divFoldSub'+i+'_'+j)
+			oFold[i].sub[j].hideIt(); oFold[i].sub[j].sub.hideIt()
+			oFold[i].sub[j].moveIt(10,suby)
+			suby+=oFold[i].sub[j].height+pxbetweensub
+		}
+	}
+  	oFoldCont=new makeMenu('divFoldCont')
+  	oFoldCont.showIt() //Showing the menu when the menu have been "created"
+}
+/************************************************************************************
+Object function to the top of the menus.
+************************************************************************************/
+function top_subs(show,num){
+	for(j=0;j<this.sub.length;j++){
+		if(show){
+			this.sub[j].showIt()
+			if(foldImg) this.ref["imgFold"+num].src=foldoutImg.src
+			if(substayfolded){if(this.sub[j].sub.status) this.sub[j].sub.showIt()
+			}else{
+				if(foldImg) this.sub[j].ref["imgFold"+num+"Sub"+j].src=foldsubinImg.src
+				this.sub[j].sub.hideIt()
+			}
+		}else{
+			this.sub[j].hideIt()
+			if(foldImg) this.ref["imgFold"+num].src=foldinImg.src
+			if(!substayfolded) this.sub[j].sub.hideIt()
+			else if(substayfolded) this.sub[j].sub.css.visibility="hidden"
+		}
+	}
+}
+/************************************************************************************
+Checking height of the menus, and moves them to the correct position.
+************************************************************************************/
+function checkheight(org){
+	if(mainstayfolded) istart=org; else istart=0
+	for(i=istart;i<oFold.length;i++){
+		oFold[i].size=oFold[i].height
+		for(j=0;j<oFold[i].sub.length;j++){
+			oFold[i].sub[j].size=oFold[i].sub[j].height+pxbetweensub
+			if(oFold[i].sub[j].status){
+				oFold[i].size+=oFold[i].sub[j].size
+				if(oFold[i].sub[j].sub.status){
+					oFold[i].size+=oFold[i].sub[j].sub.height+pxbetweensub
+					oFold[i].sub[j].size+=oFold[i].sub[j].sub.height+pxbetweensub
+				}
+			}
+			if(j!=0) oFold[i].sub[j].moveIt(10,oFold[i].sub[j-1].y+oFold[i].sub[j-1].size)
+		}
+		if(i!=0) oFold[i].moveIt(0,oFold[i-1].y+oFold[i-1].size+pxbetweenmain)
+	}
+}
+/************************************************************************************
+Fold in and out the submenus.
+************************************************************************************/
+function subfoldmenu(main,sub){
+	if(!substayfolded){
+		for(i=0;i<oFold[main].sub.length;i++){if(i!=sub){
+		oFold[main].sub[i].sub.hideIt(); if(foldImg) oFold[main].sub[i].ref["imgFold"+main+"Sub"+i].src=foldsubinImg.src}}
+	}
+	if(!oFold[main].sub[sub].sub.status){
+		oFold[main].sub[sub].sub.showIt()
+		if(foldImg) oFold[main].sub[sub].ref["imgFold"+main+"Sub"+sub].src=foldsuboutImg.src
+	}else{
+		oFold[main].sub[sub].sub.hideIt()
+		if(foldImg) oFold[main].sub[sub].ref["imgFold"+main+"Sub"+sub].src=foldsubinImg.src
+	}
+	checkheight(main)
+}
+/************************************************************************************
+Fold in and out the mainmenus
+************************************************************************************/
+function foldmenu(num){
+	if(!mainstayfolded){for(i=0;i<oFold.length;i++){if(i!=num) oFold[i].subs(0,i)}}
+	if(!oFold[num].sub[0].status)oFold[num].subs(1,num)
+	else oFold[num].subs(0,num)
+	checkheight(num)
+}
+//Initiating the menus onload, if it's a 4.x+ browser.
+if(bw.bw) onload=foldInit;
+</script>
+<!-- Menu container -->
+<div id="divFoldCont">
+	<!-- Top 1 -->
+	<div id="divFold0" class="clFold"><a href="#" onclick="foldmenu(0); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clFoldLinks"><img src="img/q_mishtane.gif" width="250" height="50" border="0" alt=""></a><br>
+		<div id="divFoldSub0_0" class="clFoldSub"><a href="mad11_4.htm" onclick="subfoldmenu(0,0); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_table1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub0_0_0" class="clFoldSub2">
+<a href="mad11_23.htm" class="clSubLinks2"><img src="img/tl_seder.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub0_1" class="clFoldSub"><a href="mad11_5.htm" onclick="subfoldmenu(0,1); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_sicum1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub0_1_0" class="clFoldSub2">
+<a href="mad11_21.htm" class="clSubLinks2"><img src="img/tl_shihut.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_22.htm" class="clSubLinks2"><img src="img/tl_yahasi.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub0_2" class="clFoldSub"><a href="#" onclick="subfoldmenu(0,2); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_madad1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub0_2_0" class="clFoldSub2">
+<a  class="clSubLinks2"><img src="img/tl_titl_emtsa.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_27.htm" class="clSubLinks2"><img src="img/tl_memutza.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_28.htm" class="clSubLinks2"><img src="img/tl_shahiah.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_29.htm" class="clSubLinks2"><img src="img/tl_hezion.gif" width="250" height="30" border="0" alt=""></a><br>
+<a  class="clSubLinks2"><img src="img/tl_titl_kitzon.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_34.htm" class="clSubLinks2"><img src="img/tl_minmax.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_33.htm" class="clSubLinks2"><img src="img/tl_harig.gif" width="250" height="30" border="0" alt=""></a><br>
+<a  class="clSubLinks2"><img src="img/tl_titl_pizur.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_31.htm" class="clSubLinks2"><img src="img/tl_thum.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_30.htm" class="clSubLinks2"><img src="img/tl_netun.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div></div>
+			<div id="divFoldSub0_3" class="clFoldSub"><a  class="clSubLinks"><img src="img/topbott.gif" width="250" height="30" border="0" alt=""></a><br>
+<div id="divFoldSub0_3_0" class="clFoldSub2">
+		</div>
+		</div>
+	</div>
+	
+	<!-- Top 2 -->
+	<div id="divFold1" class="clFold"><a href="#" onclick="foldmenu(1); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clFoldLinks"> <img src="img/q_hashvaa.gif" width="250" height="50" border="0" alt=""></a><br>
+		<div id="divFoldSub1_0" class="clFoldSub"><a href="mad11_4.htm" onclick="subfoldmenu(1,0); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_table1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub1_0_0" class="clFoldSub2">
+				<a href="mad11_23.htm" class="clSubLinks2"><img src="img/tl_seder.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub1_1" class="clFoldSub"><a href="mad11_5.htm" onclick="subfoldmenu(1,1); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_sicum1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub1_1_0" class="clFoldSub2">
+				 <a href="mad11_21.htm" class="clSubLinks2"><img src="img/tl_shihut.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_22.htm" class="clSubLinks2"><img src="img/tl_yahasi.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_25.htm" class="clSubLinks2"><img src="img/tl_hefresh.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_26.htm" class="clSubLinks2"><img src="img/tl_memutza1.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub1_2" class="clFoldSub"><a href="mad11_6.htm" onclick="subfoldmenu(1,2); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_madad1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub1_2_0" class="clFoldSub2">
+				 <a  class="clSubLinks2"><img src="img/tl_titl_emtsa.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_27.htm" class="clSubLinks2"><img src="img/tl_memutza.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_28.htm" class="clSubLinks2"><img src="img/tl_shahiah.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_29.htm" class="clSubLinks2"><img src="img/tl_hezion.gif" width="250" height="30" border="0" alt=""></a><br>
+<a  class="clSubLinks2"><img src="img/tl_titl_pizur.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_31.htm" class="clSubLinks2"><img src="img/tl_thum.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_32.htm" class="clSubLinks2"><img src="img/tl_teken.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_31.htm" class="clSubLinks2"><img src="img/tl_netun.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub1_3" class="clFoldSub"><a  class="clSubLinks"><img src="img/topbott.gif" width="250" height="30" border="0" alt=""></a><br>
+<div id="divFoldSub1_3_0" class="clFoldSub2">
+		</div>
+		</div>
+	</div>
+	<!-- Top 3 -->
+	<div id="divFold2" class="clFold"><a href="#" onclick="foldmenu(2); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clFoldLinks"><img src="img/q_kesher.gif" width="250" height="50" border="0" alt=""></a><br>
+		<div id="divFoldSub2_0" class="clFoldSub"><a href="mad11_4.htm" onclick="subfoldmenu(2,0); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_table1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub2_0_0" class="clFoldSub2">
+				 <a href="mad11_23.htm" class="clSubLinks2"><img src="img/tl_seder.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub2_1" class="clFoldSub"><a href="mad11_5.htm" onclick="subfoldmenu(2,1); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_sicum1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub2_1_0" class="clFoldSub2">
+				 <a href="mad11_21.htm" class="clSubLinks2"><img src="img/tl_shihut.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_22.htm" class="clSubLinks2"><img src="img/tl_yahasi.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_24.htm" class="clSubLinks2"><img src="img/tl_kesher.gif" width="250" height="30" border="0" alt=""></a><br>
+						 
+			</div>
+		</div>
+		<div id="divFoldSub2_2" class="clFoldSub"><a href="mad11_6.htm" onclick="subfoldmenu(2,2); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_madad1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub2_2_0" class="clFoldSub2">
+				 <a href="mad11_35.htm" class="clSubLinks2"><img src="img/tl_pirson.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub2_3" class="clFoldSub"><a  class="clSubLinks"><img src="img/topbott.gif" width="250" height="30" border="0" alt=""></a><br>
+<div id="divFoldSub2_3_0" class="clFoldSub2">
+		</div>
+		</div>
+	</div>
+	<!-- Top 4 -->
+	<div id="divFold3" class="clFold"><a href="#" onclick="foldmenu(3); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clFoldLinks"><img src="img/q_hashpaa.gif" width="250" height="50" border="0" alt=""></a><br>
+		<div id="divFoldSub3_0" class="clFoldSub"><a href="#" onclick="subfoldmenu(3,0); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_sicum1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub3_0_0" class="clFoldSub2">
+			<a href="mad11_25.htm" class="clSubLinks2"><img src="img/tl_hefresh.gif" width="250" height="30" border="0" alt=""></a><br>
+			<a href="mad11_26.htm" class="clSubLinks2"><img src="img/tl_memutza1.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub3_1" class="clFoldSub"><a href="#" onclick="subfoldmenu(3,1); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="img/t_madad1.gif" width="250" height="30" border="0" alt=""></a><br>
+			<div id="divFoldSub3_1_0" class="clFoldSub2">
+			<a  class="clSubLinks2"><img src="img/tl_titl_emtsa.gif" width="250" height="30" border="0" alt=""></a><br>
+<a href="mad11_27.htm" class="clSubLinks2"><img src="img/tl_memutza.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_28.htm" class="clSubLinks2"><img src="img/tl_shahiah.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_29.htm" class="clSubLinks2"><img src="img/tl_hezion.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a  class="clSubLinks2"><img src="img/tl_titl_pizur.gif" width="250" height="30" border="0" alt=""></a><br>
+				 <a href="mad11_31.htm" class="clSubLinks2"><img src="img/tl_thum.gif" width="250" height="30" border="0" alt=""></a><br>
+ <a href="mad11_32.htm" class="clSubLinks2"><img src="img/tl_teken.gif" width="250" height="30" border="0" alt=""></a><br>
+ <a href="mad11_30.htm" class="clSubLinks2"><img src="img/tl_netun.gif" width="250" height="30" border="0" alt=""></a><br>
+			</div>
+		</div>
+		<div id="divFoldSub3_2" class="clFoldSub"><a  class="clSubLinks"><img src="img/topbott.gif" width="250" height="30" border="0" alt=""></a><br>
+<div id="divFoldSub3_2_0" class="clFoldSub2">
+		</div>
+		</div>
+	</div>
+	
+<!--
+	Here's how it would look if we added one more top menu.
+	(in this case a top menu with one sublevel.
+	
+	
+	<div id="divFold4" class="clFold"><a href="#" onclick="foldmenu(4); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clFoldLinks"><img src="images/foldarrowin.gif" name="imgFold4" width=12 height=12 alt="" border=0> [choice 4]</a><br>
+		<div id="divFoldSub4_0" class="clFoldSub"><a href="#" onclick="subfoldmenu(4,0); if(bw.ie5 || bw.ie4) this.blur(); return false" class="clSubLinks"><img src="images/foldsubarrowin.gif" name="imgFold4Sub0" width=10 height=10 alt="" border=0> [choice 4_0]</a><br>
+			<div id="divFoldSub4_0_0" class="clFoldSub2">
+				<a href="#" class="clSubLinks2">-Sub 4_0_0</a><br>
+			</div>
+		</div>
+	</div>	
+	
+	Note all the places the numbers changed:
+	
+	divFoldCHANGED
+	foldmenu(CHANGED)
+	imgFoldCHANGED
+	divFoldSubCHANGED_0
+	subfoldmenu(CHANGED,0)
+	imgFoldCHANGEDSub0
+	divFoldSubCHANGED_0_0
+	
+	Locate those places to see where the numbers should be increased by one each time.
+	If you add more topmenus be sure to change the "mainmenus" variable
+	and add it in the "submenus" array.
+-->	
+</div>
+</div><br clear="all"><br><br><br>
+<div align=right>
+<hr width="80%">
+<img src="../images/projlogo.gif" alt="logo" width="460" height="37" hspace="5"><br></div>
+</BODY>
+</HTML>
+

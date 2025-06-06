@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>"ארגז כלים"  לעיבוד נתונים בטבלה</title>
+<STYLE>
+DIV.clTop {	POSITION: absolute; text-align: right; WIDTH: 20px}
+DIV.clSub {	LEFT: 0px; text-align: right; POSITION: absolute; WIDTH: 0px}
+#divCont {	HEIGHT: 0px; LEFT: 20px; POSITION: absolute; TOP: 170px; WIDTH: 0px}
+A.clMain {	COLOR: navy;  FONT-SIZE: 14px; FONT-WEIGHT: bold; TEXT-DECORATION: none}
+A.clSubb {	COLOR: blue;   FONT-SIZE: 12px; TEXT-DECORATION: none}
+#divMain {	POSITION: absolute}
+</STYLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-8">
+	<title>Untitled</title>
+</head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-8">
+<body style="background-repeat: no-repeat; background-attachment: scroll;" background="../IMAGES/toolsbg.gif" bgcolor="#E7F7FF";" >
+<table width="98%" border="0" align="center"><tr align="center"><td  nowrap><font  size="-1" color="#004080">הלבטב םינותנה דוביע</font>
+<br>
+<b><font color=C80064 size=+1>הלבטב םינותנ דוביעל  "םילכ זגרא"</font></b><br>
+<img src="../images/line_sh.gif" alt="Line"  width="300" height="17"></td></tr>
+<tr align="center" valign="bottom"><td align="center" nowrap><b><font color=C80064 size=+1>ילכה גוס יפל הריחב</font></b></td></tr>
+</table><br>
+<div align="right">
+<table border="0" align="right"><tr align="right"><td nowrap><br>
+ רישע רחבמ ואצמת םכינפלש "םילכה זגרא"ב<br>
+ דוביעב םכתא תרשל ולכויש ,"םילכ" לש<br>
+ םישדח םילכה םא םג .םיימלוגה םינותנה<br>
+שמתשהל ליחתהלו "םימל ץופקל" יאדכ ,םכל<br>
+תא םכסל  םכל ורזעי ולא םילכ .םהב<br>
+.םתרזעב תולגל ןתינ המ ןיבהלו םינותנה<br><br>
+<b><FONT COLOR=#5000DF> הלאשל םימיאתמה םילכב ורחב<br>:םכלש םינתשמלו</font></b><br>
+<img src="../IMAGES/tools_1.gif" width="156" height="113" border="0" alt="">
+<br><br>
+<b>?רוחבל ילכ הזיאב</b><br>
+<a href="mad11_6.htm">םייטסיטטס םידדמ</a> | <a href="mad11_5.htm">םייניב ימוכיס</a> | <a href="mad11_4.htm">הלבט ןוימ</a><br>
+</div>
+</td></tr></table>
+<br clear="all">
+<SCRIPT language=JavaScript>
+/********************************************************************************
+Copyright (C) 1999 Thomas Brattli
+This script is made by and copyrighted to Thomas Brattli at www.bratta.com
+********************************************************************************/
+
+/************************************************************************************
+This script is a "foldout" menu script, all the "foldouts" will
+stay outfolded in older browsers. Works in ie4+ and ns4+.
+
+To change where the menu appears change the left and top values of the divCont
+in the stylesheets, it's currently placed relative so you can
+place this menu in tables or similar if you want. Change the 
+text colors and size in the A.clMain and A.clSubb classes.
+************************************************************************************/
+
+/************************************************************************************
+Change this to false if you want all the submenus to get unfold when you
+foldout a new one.
+************************************************************************************/
+var stayFolded=false
+
+/************************************************************************************
+Browsercheck
+************************************************************************************/
+var n = (document.layers) ? 1:0;
+var ie = (document.all) ? 1:0;
+var browser=((n || ie) && parseInt(navigator.appVersion)>=4)  
+
+/************************************************************************************
+Making cross-browser objects
+************************************************************************************/
+function makeMenu(obj,nest){
+	nest=(!nest) ? '':'document.'+nest+'.'										
+	this.css=(n) ? eval(nest+'document.'+obj):eval('document.all.'+obj+'.style')					
+   	this.ref=(n) ? eval(nest+'document.'+obj+'.document'):eval('document');		
+	this.height=n?this.ref.height:eval(obj+'.offsetHeight')
+	this.x=(n)? this.css.left:this.css.pixelLeft;this.y=(n)? this.css.top:this.css.pixelTop;							
+	this.hideIt=b_hideIt;	this.showIt=b_showIt; this.vis=b_vis; this.moveIt=b_moveIt											
+	return this
+}
+function b_showIt(){this.css.visibility="visible"}
+function b_hideIt(){this.css.visibility="hidden"}
+function b_vis(){if(this.css.visibility=="hidden" || this.css.visibility=="hide") return true;}
+function b_moveIt(x,y){this.x=x; this.y=y; this.css.left=this.x; this.css.top=this.y}
+/************************************************************************************
+Initiating the page. Just add to the arrays here to get more menuitems
+and add divs in the page
+************************************************************************************/
+function init(){
+	oTop=new Array()
+	oTop[0]=new makeMenu('divTop1','divCont')
+	oTop[1]=new makeMenu('divTop2','divCont')
+	oTop[2]=new makeMenu('divTop3','divCont')
+	oTop[3]=new makeMenu('divTop4','divCont')
+	oTop[4]=new makeMenu('divTop5','divCont')
+	oTop[5]=new makeMenu('divTop6','divCont')
+	oSub=new Array()
+	oSub[0]=new makeMenu('divSub1','divCont.document.divTop1')
+	oSub[1]=new makeMenu('divSub2','divCont.document.divTop2')
+	oSub[2]=new makeMenu('divSub3','divCont.document.divTop3')
+	oSub[3]=new makeMenu('divSub4','divCont.document.divTop4')
+	oSub[4]=new makeMenu('divSub5','divCont.document.divTop5')
+	oSub[5]=new makeMenu('divSub6','divCont.document.divTop6')
+	for(i=0;i<oSub.length;i++){ oSub[i].hideIt() }
+	for(i=1;i<oTop.length;i++){ oTop[i].moveIt(0,oTop[i-1].y+oTop[i-1].height) }
+}
+/************************************************************************************
+This is the function that changes the sub menus to folded or unfolded state.
+************************************************************************************/
+
+function menu(num){
+	if(browser){
+		if(!stayFolded){
+			for(i=0;i<oSub.length;i++){
+				if(i!=num) oSub[i].hideIt()
+			}
+			for(i=1;i<oTop.length;i++){
+				oTop[i].moveIt(0,oTop[i-1].y+oTop[i-1].height)
+			}
+		}
+		oSub[num].vis()?oSub[num].showIt():oSub[num].hideIt()
+		for(i=1;i<oTop.length;i++){ 
+			if(!oSub[i-1].vis()) oTop[i].moveIt(0,oTop[i-1].y+oTop[i-1].height+oSub[i-1].height) 
+			else oTop[i].moveIt(0,oTop[i-1].y+oTop[i-1].height)
+		}
+	}
+}
+//Initiating the menus onload, if it's a 4.x+ browser.
+if(browser) onload=init;
+
+</SCRIPT>
+<DIV id=divCont>
+
+<DIV class=clTop id=divTop1><onclick="menu(0); return false"><img src="img/top.gif" width="250" height="49" border="0" align="middle" alt=""></A><BR>
+<DIV class=clSub id=divSub1><A class=clSubb>
+<A class=clSubb >
+</DIV></DIV>
+
+<DIV class=clTop id=divTop2><A class=clMain 
+href="#" 
+onclick="menu(1); return false"><img src="img/t_table1.gif" width="250" height="30" border="0"  alt=""></A><BR>
+<DIV class=clSub id=divSub2>
+<A class=clSubb href="mad11_23.htm"><img src="img\tl_seder.gif" width="250" height="30" border="0" alt=""></A></DIV></DIV>
+
+<DIV class=clTop id=divTop3><A class=clMain 
+href="#" 
+onclick="menu(2); return false"><img src="img/t_sicum1.gif" width="250" height="30" border="0" alt=""></A><br>
+<DIV class=clSub id=divSub3>
+<A class=clSubb href="mad11_21.htm"><img src="img/tl_shihut.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_22.htm"><img src="img/tl_yahasi.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_24.htm"><img src="img/tl_kesher.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_25.htm"><img src="img/tl_hefresh.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_26.htm"><img src="img/tl_memutza1.gif" width="250" height="30" border="0" alt=""></A></DIV></DIV>
+
+<DIV class=clTop id=divTop4><A class=clMain href="#" 
+onclick="menu(3); return false"><img src="img/t_madad1.gif" width="250" height="30" border="0" alt=""></A><BR>
+<DIV class=clSub id=divSub4><A class=clSubb"><img src="img/tl_titl_emtsa.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_27.htm"><img src="img/tl_memutza.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_28.htm"><img src="img\tl_shahiah.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_29.htm"><img src="img\tl_hezion.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb ><img src="img/tl_titl_kitzon.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_34.htm"><img src="img/tl_minmax.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_33.htm"><img src="img/tl_harig.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb ><img src="img/tl_titl_pizur.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_32.htm"><img src="img/tl_teken.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_31.htm"><img src="img/tl_thum.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_30.htm"><img src="img/tl_netun.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb ><img src="img/tl_titl_kesher.gif" width="250" height="30" border="0" alt=""></A><A class=clSubb href="mad11_35.htm"><img src="img/tl_pirson.gif" width="250" height="30" border="0" alt=""></A></DIV></DIV>
+
+<DIV class=clTop id=divTop5><A class=clMain onclick="menu(4); return false"><img src="img/t_grafNO.gif" width="250" height="30" border="0" alt=""></A><br>
+<DIV class=clSub id=divSub5><A class=clSubb >
+</A></DIV></DIV>
+
+<DIV class=clTop id=divTop6><A class=clMain onclick="menu(5); return false"><img src="img/topbott.gif" width="250" height="30" border="0" alt=""></A><BR>
+<DIV class=clSub id=divSub6><A class=clSubb ></A><br></DIV></DIV>     
+<br> 
+</div>
+<br clear="all"><br><br><br>
+<div align=right><hr width="80%">
+<img src="../images/projlogo.gif" alt="logo" width="460" height="37" hspace="5"><br></div>
+
+</body>
+</html>

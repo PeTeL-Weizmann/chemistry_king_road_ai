@@ -1,0 +1,129 @@
+<html>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-8">
+<head>
+
+
+<script language="javascript" type="text/javascript">
+<!--
+/****************************************************
+     Author: Eric King
+     Url: http://redrival.com/eak/index.shtml
+     This script is free to use as long as this info is left in
+     Featured on Dynamic Drive script library (http://www.dynamicdrive.com)
+****************************************************/
+var win=null;
+function NewWindow(mypage,myname,w,h,scroll,pos){
+if(pos=="random"){LeftPosition=(screen.width)?Math.floor(Math.random()*(screen.width-w)):100;TopPosition=(screen.height)?Math.floor(Math.random()*((screen.height-h)-75)):100;}
+if(pos=="center"){LeftPosition=(screen.width)?(screen.width-w)/2:100;TopPosition=(screen.height)?(screen.height-h)/2:100;}
+else if((pos!="center" && pos!="random") || pos==null){LeftPosition=20;TopPosition=20}
+settings='width='+w+',height='+h+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',location=no,directories=no,status=no,menubar=no,toolbar=no,resizable=yes';
+win=window.open(mypage,myname,settings);}
+// -->
+</script>
+
+
+<script>function help( a ) {}</script>
+
+<script language="Javascript">
+
+function help(a){
+
+<!----------------------This part is for Netscape--------------------->
+
+if ((navigator.userAgent.indexOf("Mozilla/3.0",0)>=0)||(navigator.userAgent.indexOf("Mozilla/4.0",0)>=0))
+
+  {
+
+win=window.open(a,"an","resizable=yes,width=510,height=200");
+win=win.focus();
+
+  }
+
+<!---------------------this part is for IE----------------------------->
+
+else{
+
+sevillia=window.open(a,"an","sevillia","resizable=yes,height=200,width=510");
+
+}
+
+}
+
+</script>
+
+<script language="JavaScript">
+function Startup(num)
+{	if (num==1)
+top.frames['main'].document.images[0].src="maps/map1.jpg";
+top.frames['main'].document.images[1].src="maps/map2.jpg";
+ top.frames['main'].document.images[2].src="maps/map3.jpg";
+ top.frames['main'].document.images[3].src="maps/map4.jpg";
+ top.frames['main'].document.images[4].src="maps/map5.jpg";
+ top.frames['main'].document.images[5].src="maps/map6.jpg";
+ num==0;
+}
+</script>
+
+<script language="JavaScript">
+function GroupOn(image)
+{	  if (image==1) 
+		top.frames['main'].document.images[5].src="maps/map6b.jpg";
+   else 
+   		top.frames['main'].document.images[5].src="maps/map6.jpg";
+   if (image==2)
+       top.frames['main'].document.images[1].src="maps/map2b.jpg";
+    else
+       top.frames['main'].document.images[1].src="maps/map2.jpg";
+   if (image==3)
+		top.frames['main'].document.images[4].src="maps/map5b.jpg";
+	else
+		top.frames['main'].document.images[4].src="maps/map5.jpg";
+   if (image==4)
+		top.frames['main'].document.images[3].src="maps/map4b.jpg";
+	else
+		top.frames['main'].document.images[3].src="maps/map4.jpg";
+   if (image==5)
+		top.frames['main'].document.images[2].src="maps/map3b.jpg";
+	else
+		top.frames['main'].document.images[2].src="maps/map3.jpg";
+   if (image==6)
+		top.frames['main'].document.images[0].src="maps/map1b.jpg";
+	else
+		top.frames['main'].document.images[0].src="maps/map1.jpg";
+}
+</script>
+
+
+<body Bgcolor="#004080" style="margin-top: 5px; margin-right: 5px;">
+
+<div align="center"><a href="../talmid.htm" target="_top"><img src="../images/abt_begi.gif" alt="Home" width="135" height="29" border="0"></a><br>
+<a href="../tblcont/mapatatar.htm" target="_top"><img src="../images/abt_kolma.gif" alt=" list of places" width="135" height="29" border="0"></a><br>
+<a href="VIST_FRM.HTM" target="_top"><img src="../IMAGES/from_merk.gif" width="135" height="29" border="0" alt="מרכז מבקרים"></a>
+<br>
+<br>
+<table border="0" cellspacing="0" cellpadding="6" align="center" bgcolor="#FCFEE4">
+<tr>
+    <td align="right">
+<center><b><font size="+1" color="#804040">:הפמה תא רכה</font></b><br>
+<font size="-1" color="#804040" style="font-family: sans-serif;"><b>
+הפמב לולסמה םש לע הציחל<br>
+!וב םישוע המ םכל הלגת -<br></center>
+</b>
+</font>
+<A HREF="javascript:GroupOn(3)"><img src="maps/bluemap.gif" width="173" height="39" border="0"></a><br>
+<A HREF="javascript:GroupOn(2)"><img src="maps/greenmap.gif" width="173" height="39" border=0></a><br>
+<A HREF="javascript:GroupOn(1)"><img src="maps/redmap.gif" width="173" height="39" border=0></a><br>
+<A HREF="javascript:GroupOn(5)"><img src="maps/orangemap.gif" width="173" height="39" border=0></a><br>
+<A HREF="javascript:GroupOn(4)"><img src="maps/pinkmap.gif" width="173" height="39" border=0></a><br>
+<A HREF="javascript:GroupOn(6)"><img src="maps/purplemap.gif" width="173" height="39" border=0></a><br>
+<a href="map_hekP.htm" target="main"><img src="maps/allmap_a.gif" alt="כל השלבים"  width="173" height="39" border="0"></a><br>
+<font  size="-1"><a href="vmaphlp.htm" onclick="NewWindow(this.href,'name','510','200','no');return false">?הפמה םע םידבוע ךיא</a></font><br><br>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+</body>
+</html>
